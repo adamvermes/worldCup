@@ -10,28 +10,30 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <link rel="shortcut icon" href="about:blank">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="teams/view1.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body>
+<body ng-controller="View1Ctrl">
+
+<h1>World Cup 2018</h1>
+
   <ul class="menu">
-    <li><a href="#!/view1">view1</a></li>
+    <li><a href="#!/view1">Teams</a></li>
+      <li><a href="#!/view1">Schedule</a></li>
+      <li><a href="#!/view1">Winners</a></li>
   </ul>
 
-  <div ng-view></div>
+  <div ng-repeat="team in teamList">{{ team.teamName }}</div>
 
-  <div ng-controller="View1Ctrl">{{ players.playerNames[0] }}</div>
+    <!--<div ng-repeat="player in teamList">{{ player.players }}</div>-->
 
+  <!--<div>Angular seed app: v<span app-version></span></div>-->
 
-
-  <div>Angular seed app: v<span app-version></span></div>
-
-
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="app.js"></script>
-  <script src="view1/view1.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
 </body>
 </html>
