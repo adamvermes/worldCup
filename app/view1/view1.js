@@ -1,14 +1,18 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+var view1Controller = angular.module('view1Controller', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
+view1Controller.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
   });
 }])
 
-.controller('View1Ctrl', [function() {
+view1Controller.controller('View1Ctrl', ['$scope', function($scope) {
+  $scope.name = "Hungary";
+  $scope.players = {
+    playerNames: ["Adam", "Vermes"]
+  }
 
 }]);
