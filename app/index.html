@@ -10,26 +10,28 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="app.css">
   <link rel="shortcut icon" href="about:blank">
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="app.js"></script>
-    <script src="teams/view1.js"></script>
-    <script src="components/version/version.js"></script>
-    <script src="components/version/version-directive.js"></script>
-    <script src="components/version/interpolate-filter.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="teams/view1.js"></script>
+  <script src="teams/apiService.js"></script>
+  <script src="schedule/schedule.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body ng-controller="View1Ctrl">
+<body ng-controller="teamsCtrl">
 
 <h1>World Cup 2018</h1>
 
   <ul class="menu">
-    <li><button href="#!/view1">Teams</button></li>
-      <li><button href="#!/schedule">Schedule</button></li>
-      <li><button href="#!/winners">Winners</button></li>
+      <li><button href="#!/teams">Teams</button></li>
+    <li><button ng-click="goToNextPhase()">Schedule</button></li>
+    <li><button href="#!/winners">Winners</button></li>
   </ul>
 
-  <div ng-repeat="team in teamList">{{ team.teamName }}</div>
+<div ng-view></div>
 
   <!--<div ng-repeat="player in teamList">{{ player.players }}</div>-->
 

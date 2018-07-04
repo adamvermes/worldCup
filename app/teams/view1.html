@@ -1,1 +1,8 @@
-<p>This is the partial for view 1.</p>
+<div ng-repeat="team in teamList">{{ team.teamName }}</div>
+<!--<button ng-click="goToNextPhase()">Next Phase</button>-->
+
+<div>
+    <h3></h3>
+    <div ng-repeat="team in group1">{{ team.teamName }}</div>
+    <div ng-repeat="group in groupNames">{{ group }}</div>
+</div>

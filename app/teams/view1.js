@@ -1,46 +1,71 @@
 'use strict';
 
-var view1Controller = angular.module('view1Controller', ['ngRoute'])
+angular.module('teamController', ['ngRoute'])
 
-view1Controller.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/teams', {
-    templateUrl: 'teams/view1.html',
-    controller: 'View1Ctrl'
-  });
+.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.when('/teams', {
+        templateUrl: 'teams/view1.html',
+        controller: 'teamsCtrl'
+    });
 }])
 
-let teams = [];
+.controller('teamsCtrl', function($scope, $http, $log, $location) {
 
-var teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
-    "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
-    "Australia", "Denmark", "Iceland", "Portugal"];
-
-view1Controller.controller('View1Ctrl', function($scope, $http) {
     $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
-        $scope.players = playerData;
-        console.log("playerData: ")
-        console.log(playerData);
-        $scope.teamList = teams;
-        console.log(playerData);
+        $scope.players = playerData.results;
+        $scope.teams = [];
+        $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
+            "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
+            "Australia", "Iceland", "Portugal"];
 
-        function generateTeams(teamNumbers) {
-            for (let i = 1; i <= teamNumbers ; i++) {
-                let team = {teamName: teamNames[i],
-                    players: []
-                }
-                teams.push(team);
+        $scope.groupNames = [];
+        $scope.generateGroupNames = function (number) {
+            for (let i = 1; i < number; i++) {
+                let group = "Group " + i;
+                $scope.groupNames.push(group);
             }
-        }
-        generateTeams(16);
+        };
 
+        $scope.generateGroupNames(16);
+        console.log($scope.groupNames);
+
+        $scope.teamList = $scope.teams;
+        $log.log(playerData);
+
+        $scope.generateTeams = function(teamNumbers) {
+            for (let i = 1; i <= teamNumbers; i++) {
+                let team = {teamName: $scope.teamNames[i],
+                    players: []
+                };
+                $scope.teams.push(team);
+            }
+        };
+        $scope.generateTeams(16);
+
+        $scope.fillPlayers = function() {
+            let slicedArray = [];
+            for (let teamMember = 0, teamIndex = 0; teamMember < $scope.players.length; teamMember+=11, teamIndex++) {
+                slicedArray = $scope.players.slice(teamMember, teamMember+11);
+                $scope.teams[teamIndex].players = slicedArray;
+            }
+        };
+        $scope.goToNextPhase = function() {
+            $location.path('/schedule');
+        };
+        $scope.fillPlayers();
+        $log.log($scope.teams);
+
+        $scope.generateGroups = function(groupNumbers) {
+            for (let i = 1; i <= groupNumbers ; i++) {
+                let group = {groupName: $scope.teamNames[i],
+                    players: []
+                };
+                $scope.teams.push(team);
+            }
+        };
+
+        $scope.group1 = [];
+        $scope.group1.push($scope.teams[0]);
+        $scope.group1.push($scope.teams[1]);
     });
 });
-
-// function fillPlayers() {
-//     var slicedArray = [];
-//     for (let teamMember = 0, teamIndex = 0; teamMember < $scope.players.length; teamMember+=11, teamIndex++) {
-//         slicedArray = $scope.players.results.slice(teamMember, teamMember+11);
-//         teams[teamIndex].players = slicedArray;
-//     }
-// }
-// fillPlayers();
