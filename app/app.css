@@ -29,3 +29,11 @@ body {
   color: darkgreen;
   text-align: center;
 }
+
+.buttons {
+  margin: auto;
+  position: center;
+  padding: 5px;
+  color: darkgreen;
+  border-color: lavenderblush;
+}
