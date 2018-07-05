@@ -37,3 +37,11 @@ body {
   color: darkgreen;
   border-color: lavenderblush;
 }
+
+.teamName {
+  font-weight: bold;
+
+}
+.players {
+  font-weight: normal;
+}
