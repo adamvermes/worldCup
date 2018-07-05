@@ -1,18 +1,19 @@
-<!--<button ng-click="goToNextPhase()">Next Phase</button>-->
-
 <ul class="menu">
     Teams <input class="buttons" type="checkbox" ng-model="toggleTeams">
     <!--Players <input class="buttons" type="checkbox" ng-model="togglePlayers">-->
     Group Stage <input class="buttons" type="checkbox" ng-model="toggleGroups">
 </ul>
 
+<container>
+
+
 <div ng-show="toggleTeams">
     <div class="teamName" ng-repeat="team in teams">{{ team.teamName }}
         <input class="buttons" type="checkbox" ng-model="togglePlayers">
-        <div class="players" ng-repeat="player in teams">
-        <div class="players" ng-show="togglePlayers" ng-repeat="eachPlayer in player.players">{{ eachPlayer }}</div>
+        <div ng-show="togglePlayers" class="players" ng-repeat="player in team.teamPlayers">{{ player }}
         </div>
     </div>
+
 </div>
 
 <div ng-show="toggleGroups">
@@ -20,3 +21,5 @@
     <!--<div ng-repeat="team in group.teamName">{{ team }}</div>-->
     </div>
 </div>
+
+</container>

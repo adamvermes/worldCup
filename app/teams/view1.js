@@ -13,13 +13,13 @@ angular.module('teamController', ['ngRoute'])
 
     $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
 
-        $scope.players = playerData.results;
+        $scope.teamPlayers = playerData.results;
 
         $scope.playersNames = [];
 
         $scope.playersFullNameGenerator = function() {
-            for (let i = 0; i < $scope.players.length; i++) {
-                $scope.playersNames.push($scope.players[i].name.first + " " + $scope.players[i].name.last);
+            for (let i = 0; i < $scope.teamPlayers.length; i++) {
+                $scope.playersNames.push($scope.teamPlayers[i].name.first + " " + $scope.teamPlayers[i].name.last);
             }
         };
         $scope.playersFullNameGenerator();
@@ -40,7 +40,7 @@ angular.module('teamController', ['ngRoute'])
         $scope.generateTeams = function(teamNumbers) {
             for (let i = 0; i < teamNumbers; i++) {
                 let team = {teamName: $scope.teamNames[i+1],
-                    players: []
+                    teamPlayers: []
                 };
                 $scope.teams.push(team);
             }
@@ -52,7 +52,7 @@ angular.module('teamController', ['ngRoute'])
             let slicedArray = [];
             for (let teamMember = 0, teamIndex = 0; teamMember < $scope.playersNames.length; teamMember+=11, teamIndex++) {
                 slicedArray = $scope.playersNames.slice(teamMember, teamMember+11);
-                $scope.teams[teamIndex].players = slicedArray;
+                $scope.teams[teamIndex].teamPlayers = slicedArray;
             }
         };
         $scope.fillPlayers();
@@ -77,7 +77,7 @@ angular.module('teamController', ['ngRoute'])
         $scope.generateGroups = function(groupNumbers) {
             for (let i = 0; i < groupNumbers ; i++) {
                 let group = {groupName: $scope.teamNames[i+1],
-                    players: []
+                    teamPlayers: []
                 };
                 $scope.teams.push(team);
             }
