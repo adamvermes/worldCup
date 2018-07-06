@@ -10,7 +10,6 @@ angular.module('teamController', ['ngRoute'])
 }])
 
 .controller('teamsCtrl', function($scope, $http, $location) {
-
     $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
 
         $scope.teamPlayers = playerData.results;
@@ -33,7 +32,7 @@ angular.module('teamController', ['ngRoute'])
 
         $scope.generateGroupNames = function (numOfGroups) {
             for (let i = 0; i < numOfGroups; i+=2) {
-                $scope.arrayOfGroups.push([$scope.teams[i], $scope.teams[i+1]]);
+                $scope.arrayOfGroups.push({name: "Group " + ((i/2)+1).toString(), teams: [$scope.teams[i], $scope.teams[i+1]]});
             }
         };
 
@@ -72,7 +71,6 @@ angular.module('teamController', ['ngRoute'])
         $scope.shuffle($scope.teams);
 
         $scope.generateGroupNames(16);
-        console.log($scope.mapOfGroups);
 
         $scope.generateGroups = function(groupNumbers) {
             for (let i = 0; i < groupNumbers ; i++) {

@@ -1,25 +1,30 @@
 <ul class="menu">
-    Teams <input class="buttons" type="checkbox" ng-model="toggleTeams">
-    <!--Players <input class="buttons" type="checkbox" ng-model="togglePlayers">-->
+    Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"> |
     Group Stage <input class="buttons" type="checkbox" ng-model="toggleGroups">
 </ul>
 
-<container>
-
-
-<div ng-show="toggleTeams">
+<div class="container-fluid" ng-show="toggleTeams">
     <div class="teamName" ng-repeat="team in teams">{{ team.teamName }}
-        <input class="buttons" type="checkbox" ng-model="togglePlayers">
-        <div ng-show="togglePlayers" class="players" ng-repeat="player in team.teamPlayers">{{ player }}
+        | Players <input type="checkbox" ng-model="togglePlayers">
+        <div class="players" ng-show="togglePlayers" ng-repeat="player in team.teamPlayers">{{ player }}
         </div>
     </div>
-
 </div>
 
-<div ng-show="toggleGroups">
-    <div ng-repeat="group in arrayOfGroups">{{ group }}
-    <!--<div ng-repeat="team in group.teamName">{{ team }}</div>-->
-    </div>
+<div class="container-fluid" ng-show="toggleGroups">
+<table>
+    <tbody class="groupTable">
+        <tr ng-repeat="items in arrayOfGroups">
+            <td>{{items.name}}</td>
+            <td ng-repeat="team in items.teams">
+                {{ team.teamName }}
+            </td>
+        </tr>
+    </tbody>
+</table>
 </div>
-
-</container>
+<!--<div ng-repeat="items in arrayOfGroups">-->
+    <!--&lt;!&ndash;<span ng-bind="$index">{{ $index }}</span>&ndash;&gt;-->
+    <!--<div class="groupStage" ng-repeat="team in items">{{ team.teamName }}-->
+    <!--</div>-->
+<!--</div>-->

@@ -45,3 +45,12 @@ body {
 .players {
   font-weight: normal;
 }
+
+.groupStage {
+  border-style: solid;
+}
+
+table, th, td {
+  border: 1px solid black;
+  padding: 15px;
+}
