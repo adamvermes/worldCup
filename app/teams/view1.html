@@ -4,7 +4,6 @@
 </ul>
 
 <div class="container-fluid" ng-show="toggleTeams">
-    <h2>Teams</h2>
     <div class="row">
         <table class="col-md-2 offset-md-5">
             <tbody class="teamName">
@@ -22,72 +21,88 @@
 </div>
 </br>
 <div class="container-fluid" ng-show="toggleGroups">
-    <h2>Group Stage</h2></br>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [0,1,2,3]">
-                    <td class="groupName">{{ arrayOfGroups[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroups[groupIndex].teams">{{ team.teamName }}</td>
+                    <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
             <table>
                 <tbody class="groupTable">
-                <tr ng-repeat="items in arrayOfGroups">
-                    <td>{{items.name}}</td>
-                    <td ng-repeat="team in items.teams">{{ team.teamName }}</td>
+                <tr ng-repeat="groupIndex in [0,1,]">
+                    <td class="groupName">{{ arrayOfGroup4[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup4[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
             <table>
                 <tbody class="groupTable">
-                <tr ng-repeat="items in arrayOfGroups">
-                    <td>{{items.name}}</td>
-                    <td ng-repeat="team in items.teams">{{ team.teamName }}</td>
+                <tr ng-repeat="groupIndex in [0]">
+                    <td class="groupName">{{ arrayOfGroup2[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup2[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
             <table>
                 <tbody class="groupTable">
-                <tr ng-repeat="items in arrayOfGroups">
-                    <td>{{items.name}}</td>
-                    <td ng-repeat="team in items.teams">{{ team.teamName }}</td>
+                <tr ng-repeat="groupIndex in [0]">
+                    <td class="groupName">{{ arrayOfGroup1[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup1[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
                 </tbody>
             </table>
+            </br>
+            <div class="col-md">
+                <table>
+                    <tbody class="groupTable">
+                    <tr ng-repeat="groupIndex in [0]">
+                        <h3 class="groupName">Winner</h3>
+                        <td class="groupName">{{ arrayOfGroup0[groupIndex].name }}</td>
+                        <td ng-repeat="team in arrayOfGroup0[groupIndex].teams">{{ team.teamName }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
             <table>
                 <tbody class="groupTable">
-                <tr ng-repeat="items in arrayOfGroups">
-                    <td>{{items.name}}</td>
-                    <td ng-repeat="team in items.teams">{{ team.teamName }}</td>
+                <tr ng-repeat="groupIndex in [1]">
+                    <td class="groupName">{{ arrayOfGroup2[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup2[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
+            <table>
+                <tbody class="groupTable">
+                <tr ng-repeat="groupIndex in [2,3]">
+                    <td class="groupName">{{ arrayOfGroup4[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup4[groupIndex].teams">{{ team.teamName }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [4,5,6,7]">
-                    <td class="groupName">{{ arrayOfGroups[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroups[groupIndex].teams">{{ team.teamName }}</td>
+                    <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
+                    <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<!--<div ng-repeat="items in arrayOfGroups">-->
-    <!--&lt;!&ndash;<span ng-bind="$index">{{ $index }}</span>&ndash;&gt;-->
-    <!--<div class="groupStage" ng-repeat="team in items">{{ team.teamName }}-->
-    <!--</div>-->
-<!--</div>-->

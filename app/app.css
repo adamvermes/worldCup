@@ -3,16 +3,11 @@
 .menu {
   list-style: none;
   margin-bottom: 2em;
-  padding: 0 0 0.5em;]
+  padding: 5px;]
 }
 
 .menu > li {
   display: inline;
-}
-
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
 }
 
 body {
