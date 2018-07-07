@@ -34,54 +34,21 @@ angular.module('teamController', ['ngRoute'])
         $scope.arrayOfGroup1 = [];
         $scope.arrayOfGroup0 = [];
 
-
-        $scope.generateNewGroups = function (numOfTeams, startingNum, previousArray, createdArray) {
+        $scope.generateNextGroup = function (numOfTeams, startingNum, previousArray, createdArray) {
             for (let i = 0; i < numOfTeams; i+=2) {
                 createdArray.push({name: "Group " + ((i/2)+startingNum).toString(), teams: [previousArray[i], previousArray[i+1]]});
             }
         };
 
-        //refactor
-        $scope.generateGroup4 = function (previousArray) {
+        $scope.generateGroup = function (numOfTeams, startingNum, previousArray, createdArray) {
             let advancedTeams = [];
 
             for (let i = 0; i < previousArray.length; i++) {
                 advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
             }
 
-            $scope.generateNewGroups(8, 9, advancedTeams, $scope.arrayOfGroup4);
+            $scope.generateNextGroup(numOfTeams, startingNum, advancedTeams, createdArray);
         };
-
-        $scope.generateGroup2 = function (previousArray) {
-            let advancedTeams = [];
-
-            for (let i = 0; i < previousArray.length; i++) {
-                advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
-            }
-
-            $scope.generateNewGroups(4, 13, advancedTeams, $scope.arrayOfGroup2);
-        };
-
-        $scope.generateGroup1 = function (previousArray) {
-            let advancedTeams = [];
-
-            for (let i = 0; i < previousArray.length; i++) {
-                advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
-            }
-
-            $scope.generateNewGroups(2, 15, advancedTeams, $scope.arrayOfGroup1);
-        };
-
-        $scope.generateGroup0 = function (previousArray) {
-            let advancedTeams = [];
-
-            for (let i = 0; i < previousArray.length; i++) {
-                advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
-            }
-
-            $scope.generateNewGroups(2, 16, advancedTeams, $scope.arrayOfGroup0);
-        };
-
 
         $scope.generateTeams = function(teamNumbers) {
             for (let i = 0; i < teamNumbers; i++) {
@@ -117,17 +84,22 @@ angular.module('teamController', ['ngRoute'])
 
         $scope.shuffle($scope.teams);
 
-        $scope.generateNewGroups(16, 1, $scope.teams, $scope.arrayOfGroup8);
-        $scope.generateGroup4($scope.arrayOfGroup8);
-        $scope.generateGroup2($scope.arrayOfGroup4);
-        $scope.generateGroup1($scope.arrayOfGroup2);
-        $scope.generateGroup0($scope.arrayOfGroup1);
-
+        $scope.generateNextGroup(16, 1, $scope.teams, $scope.arrayOfGroup8);
+        $scope.generateGroup(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
+        $scope.generateGroup(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
+        $scope.generateGroup(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
+        $scope.generateGroup(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
 
         console.log("arrayOfGroup8");
         console.log($scope.arrayOfGroup8);
         console.log("arrayOfGroup4");
         console.log($scope.arrayOfGroup4);
+        console.log("arrayOfGroup2");
+        console.log($scope.arrayOfGroup2);
+        console.log("arrayOfGroup1");
+        console.log($scope.arrayOfGroup1);
+        console.log("arrayOfGroup0");
+        console.log($scope.arrayOfGroup0);
 
     });
 });
