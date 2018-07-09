@@ -9,7 +9,16 @@ angular.module('teamController', ['ngRoute'])
     });
 }])
 
-.controller('teamsCtrl', function($scope, $http, $location) {
+.controller('teamsCtrl', function($scope, $http) {
+
+    $scope.simulateGame = function() {
+        $scope.playersFullNameGenerator();
+        $scope.generateTeams(16);
+        $scope.fillPlayers();
+        $scope.shuffle($scope.teams);
+        $scope.generateAllGroups();
+    };
+
     $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
 
         $scope.teamPlayers = playerData.results;
@@ -21,7 +30,6 @@ angular.module('teamController', ['ngRoute'])
                 $scope.playersNames.push($scope.teamPlayers[i].name.first + " " + $scope.teamPlayers[i].name.last);
             }
         };
-        $scope.playersFullNameGenerator();
 
         $scope.teams = [];
         $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
@@ -50,6 +58,14 @@ angular.module('teamController', ['ngRoute'])
             $scope.generateNextGroup(numOfTeams, startingNum, advancedTeams, createdArray);
         };
 
+        $scope.generateAllGroups = function() {
+            $scope.generateNextGroup(16, 1, $scope.teams, $scope.arrayOfGroup8);
+            $scope.generateGroup(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
+            $scope.generateGroup(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
+            $scope.generateGroup(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
+            $scope.generateGroup(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
+        }
+
         $scope.generateTeams = function(teamNumbers) {
             for (let i = 0; i < teamNumbers; i++) {
                 let team = {teamName: $scope.teamNames[i+1],
@@ -58,8 +74,6 @@ angular.module('teamController', ['ngRoute'])
                 $scope.teams.push(team);
             }
         };
-        $scope.generateTeams(16);
-
 
         $scope.fillPlayers = function() {
             let slicedArray = [];
@@ -68,7 +82,6 @@ angular.module('teamController', ['ngRoute'])
                 $scope.teams[teamIndex].teamPlayers = slicedArray;
             }
         };
-        $scope.fillPlayers();
 
         $scope.shuffle = function(array) {
             let i = 0;
@@ -82,24 +95,6 @@ angular.module('teamController', ['ngRoute'])
             }
         };
 
-        $scope.shuffle($scope.teams);
-
-        $scope.generateNextGroup(16, 1, $scope.teams, $scope.arrayOfGroup8);
-        $scope.generateGroup(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
-        $scope.generateGroup(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
-        $scope.generateGroup(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
-        $scope.generateGroup(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
-
-        console.log("arrayOfGroup8");
-        console.log($scope.arrayOfGroup8);
-        console.log("arrayOfGroup4");
-        console.log($scope.arrayOfGroup4);
-        console.log("arrayOfGroup2");
-        console.log($scope.arrayOfGroup2);
-        console.log("arrayOfGroup1");
-        console.log($scope.arrayOfGroup1);
-        console.log("arrayOfGroup0");
-        console.log($scope.arrayOfGroup0);
-
+        $scope.simulateGame();
     });
 });
