@@ -2,7 +2,8 @@
 
 <ul class="menu">
     Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"> |
-    Group Stage <input class="buttons" type="checkbox" ng-model="toggleGroups">
+    <button class="buttons" ng-click="startGame()">Simulate Game</button>
+    <button class="buttons" ng-click="clearGroupArrays()">Reset Game</button>
 </ul>
 
 <div class="container-fluid" ng-show="toggleTeams">
@@ -22,15 +23,15 @@
     </div>
 </div>
 </br>
-<div class="container-fluid" ng-show="toggleGroups">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md">
             <table>
                 <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [0,1,2,3]">
-                    <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
+                    <tr ng-repeat="groupIndex in [0,1,2,3]">
+                        <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
+                        <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
