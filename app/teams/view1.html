@@ -1,17 +1,17 @@
 <h2>World Cup 2018</h2>
 
 <ul class="menu">
-    <button class="buttons" ng-click="startGame()">Simulate</button>
-
-    <button class="buttons" ng-click="alertWinner()">Winner</button>
-
-    <button class="buttons">Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"></button>
+    <button class="buttons" ng-click="startGame()">Start </button>
 
     <button class="buttons" ng-click="clearGroupArrays()">Reset</button>
+
+    <button class="buttons">Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"></button>
 </ul>
 
+<button class="buttons" ng-click="alertWinner()" ng-if="arrayOfGroup0[0].teams[0].teamName">Winner</button>
+
 <div class="container-fluid">
-    <div class="row justify-content-sm-center align-items-center allGroupsTable">
+    <div class="row justify-content-sm-center align-items-center allGroupsTable" ng-if="arrayOfGroup8[0]">
         <div class="col-sm">
             <table>
                 <tbody class="groupTable">
@@ -100,7 +100,7 @@
     <div class="row">
         <table class="col-md-2 offset-md-5">
             <tbody class="teamName">
-            <tr ng-repeat="team in teams">
+            <tr ng-repeat="team in teams | orderBy: 'teamName'">
                 <td class="row">
                     <div class="col">{{team.teamName}} </div>
                     <div>|</div>

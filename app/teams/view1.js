@@ -124,6 +124,10 @@ angular.module('teamController', ['ngRoute'])
 
         $scope.resetGame = function () {
             $scope.clearGroupArrays();
-        }
+        };
+
+        // $scope.showTeams = function () {
+        //     $scope.teams;
+        // }
     });
 });
