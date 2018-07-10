@@ -14,7 +14,7 @@ angular.module('teamController', ['ngRoute'])
     $scope.simulateGame = function() {
         $scope.playersFullNameGenerator();
         $scope.generateTeams(16);
-        console.log("teams", $scope.teams);
+        $scope.shuffle($scope.teams);
         $scope.fillPlayers();
         $scope.generateAllGroups();
     };
@@ -43,39 +43,36 @@ angular.module('teamController', ['ngRoute'])
         $scope.arrayOfGroup1 = [];
         $scope.arrayOfGroup0 = [];
 
-        $scope.generateNextGroup = function (numOfTeams, startingNum, previousArray, createdArray) {
+        $scope.generateGroupNames = function (numOfTeams, startingNum, previousArray, createdArray) {
             for (let i = 0; i < numOfTeams; i+=2) {
                 createdArray.push({name: "Group " + ((i/2)+startingNum).toString(), teams: [previousArray[i], previousArray[i+1]]});
             }
         };
 
-        $scope.generateGroup = function (numOfTeams, startingNum, previousArray, createdArray) {
+        $scope.generateAdvancedTeams = function (numOfTeams, startingNum, previousArray, createdArray) {
             let advancedTeams = [];
 
             for (let i = 0; i < previousArray.length; i++) {
                 advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
             }
 
-            $scope.generateNextGroup(numOfTeams, startingNum, advancedTeams, createdArray);
+            $scope.generateGroupNames(numOfTeams, startingNum, advancedTeams, createdArray);
         };
 
         $scope.generateAllGroups = function() {
-            $scope.generateNextGroup(16, 1, $scope.teams, $scope.arrayOfGroup8);
-            $scope.generateGroup(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
-            $scope.generateGroup(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
-            $scope.generateGroup(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
-            $scope.generateGroup(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
-            console.log("Group4", $scope.arrayOfGroup4);
-        }
-
-        var team = {};
+            $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
+            $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
+            $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
+            $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
+            $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
+        };
 
         $scope.generateTeams = function(teamNumbers) {
             if ($scope.teams.length === 16) {
-               return;
+               return 0;
             } else {
                 for (let i = 0; i < teamNumbers; i++) {
-                    team = {teamName: $scope.teamNames[i+1],
+                    let team = {teamName: $scope.teamNames[i+1],
                         teamPlayers: []
                     };
                     $scope.teams.push(team);
@@ -92,13 +89,9 @@ angular.module('teamController', ['ngRoute'])
                         $scope.teams[teamIndex].teamPlayers = slicedArray;
                     }
                 } else {
-                    console.log(console.log($scope.teams[i].teamPlayers.length))
+                    return;
                 }
             }
-        };
-
-        Array.prototype.clear = function() {
-            this.splice(0, this.length);
         };
 
         $scope.shuffle = function(array) {
@@ -113,18 +106,15 @@ angular.module('teamController', ['ngRoute'])
             }
         };
 
-        $scope.alertPlayers = function() {
-            alert()
+        Array.prototype.clear = function() {
+            this.splice(0, this.length);
+        };
+
+        $scope.alertWinner = function() {
+            alert($scope.arrayOfGroup0.teamName);
         };
 
         $scope.clearGroupArrays = function() {
-            // team = {teamName: [], teamPlayers: []};
-            // $scope.teams.push(team);
-            // for (let i = 0; i < $scope.teams.length; i++) {
-            //     $scope.teams[i].teamPlayers.clear();
-            //     $scope.teams[i].teamName.clear();
-            // }
-            console.log("after clear", $scope.teams);
             $scope.arrayOfGroup8.clear();
             $scope.arrayOfGroup4.clear();
             $scope.arrayOfGroup2.clear();
