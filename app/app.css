@@ -60,3 +60,9 @@ tr:nth-child(even) {background-color: seashell;}
   margin-left: 0;
   margin-right: 0;
 }
+
+.header{
+  color: seashell;
+  padding: 5px;
+  background-color: darkred;
+}

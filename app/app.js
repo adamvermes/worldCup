@@ -5,11 +5,10 @@ angular.module('myApp', [
   'ngRoute',
   'app.apiService',
   'teamController',
-    'scheduleController',
+   'scheduleController',
   'myApp.version'
 ])
 .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
 
-  $routeProvider.otherwise({redirectTo: '/teams'});
+  $routeProvider.otherwise({redirectTo: '/worldCup'});
 }]);

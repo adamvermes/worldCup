@@ -3,7 +3,7 @@
 angular.module('teamController', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/teams', {
+    $routeProvider.when('/worldCup', {
         templateUrl: 'teams/view1.html',
         controller: 'teamsCtrl'
     });
@@ -126,8 +126,5 @@ angular.module('teamController', ['ngRoute'])
             $scope.clearGroupArrays();
         };
 
-        // $scope.showTeams = function () {
-        //     $scope.teams;
-        // }
     });
 });
