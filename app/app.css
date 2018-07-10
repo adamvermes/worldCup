@@ -6,10 +6,6 @@
   padding: 5px;]
 }
 
-.menu > li {
-  display: inline;
-}
-
 body {
   background: darkblue url("./wallpaper/wc.jpg");
   color: darkblue;
@@ -22,6 +18,9 @@ body {
   padding: 5px;
   color: darkblue;
   border-color: lavenderblush;
+  box-shadow: 2px 2px darkblue;
+  font-weight: bold;
+
 }
 
 .teamName {
@@ -42,6 +41,7 @@ body {
 table, th, td{
   border: 1px solid black;
   padding: 3px;
+  box-shadow: 2px 2px darkblue;
 }
 
 .allGroupsTable td {
