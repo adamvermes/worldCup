@@ -106,21 +106,16 @@ angular.module('teamController', ['ngRoute'])
             }
         };
 
-        Array.prototype.clear = function() {
-            this.splice(0, this.length);
-        };
-
         $scope.alertWinner = function() {
-            console.log($scope.arrayOfGroup0[0].teams[0].teamName);
-            alert($scope.arrayOfGroup0[0].teams[0].teamName);
+            alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
         };
 
         $scope.clearGroupArrays = function() {
-            $scope.arrayOfGroup8.clear();
-            $scope.arrayOfGroup4.clear();
-            $scope.arrayOfGroup2.clear();
-            $scope.arrayOfGroup1.clear();
-            $scope.arrayOfGroup0.clear();
+            $scope.arrayOfGroup8.length = 0;
+            $scope.arrayOfGroup4.length = 0;
+            $scope.arrayOfGroup2.length = 0;
+            $scope.arrayOfGroup1.length = 0;
+            $scope.arrayOfGroup0.length = 0;
         };
 
         $scope.startGame = function () {

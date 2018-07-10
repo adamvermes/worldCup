@@ -3,14 +3,16 @@
 <ul class="menu">
     <button class="buttons" ng-click="startGame()">Simulate</button>
 
+    <button class="buttons" ng-click="alertWinner()">Winner</button>
+
     <button class="buttons">Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"></button>
 
     <button class="buttons" ng-click="clearGroupArrays()">Reset</button>
 </ul>
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md">
+    <div class="row justify-content-sm-center align-items-center allGroupsTable">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                     <tr ng-repeat="groupIndex in [0,1,2,3]">
@@ -20,7 +22,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [0,1,]">
@@ -30,7 +32,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [0]">
@@ -40,7 +42,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [0]">
@@ -49,20 +51,19 @@
                 </tr>
                 </tbody>
             </table>
-            </br>
-            <div class="col-md">
-                <table>
-                    <tbody class="groupTable">
-                    <tr ng-repeat="groupIndex in [0]">
-                        <h3 class="groupName">Winner</h3>
-                        <td class="groupName">{{ arrayOfGroup0[groupIndex].name }}</td>
-                        <td ng-repeat="team in arrayOfGroup0[groupIndex].teams">{{ team.teamName }}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <!--</br>-->
+            <!--<div class="col-sm">-->
+                <!--<table>-->
+                    <!--<tbody class="groupTable">-->
+                    <!--<tr ng-repeat="groupIndex in [0]">-->
+                        <!--<td class="groupName">Tournament Winner</td>-->
+                        <!--<td>{{arrayOfGroup0[0].teams[0].teamName}}</td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            <!--</div>-->
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [1]">
@@ -72,7 +73,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [2,3]">
@@ -82,7 +83,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-md">
+        <div class="col-sm">
             <table>
                 <tbody class="groupTable">
                 <tr ng-repeat="groupIndex in [4,5,6,7]">
