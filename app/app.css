@@ -63,4 +63,5 @@ tr:nth-child(even) {background-color: seashell;}
   color: seashell;
   padding: 5px;
   background-color: darkred;
+  text-shadow: 2px 2px 5px darkblue;
 }
