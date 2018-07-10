@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('app.apiService', [])
+    .module('gameController', [])
     .factory('dataService', dataService);
 
 dataService.$inject = ['$http', 'logger'];
