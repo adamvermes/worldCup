@@ -12,7 +12,8 @@
 
 body {
   background: lightblue;
-  color: darkgreen;
+  background-image: url("./wallpaper/wc.jpg");
+  color: darkblue;
   text-align: center;
 }
 
@@ -42,6 +43,7 @@ body {
 table, th, td{
   border: 1px solid black;
   padding: 3px;
+  /*background-color: seashell;*/
 }
 
 .allGroupsTable td {
@@ -51,7 +53,8 @@ table, th, td{
 
 }
 
-tr:nth-child(odd) {background-color: #f2f2f2;}
+tr:nth-child(odd) {background-color: skyblue;}
+tr:nth-child(even) {background-color: seashell;}
 
 .row {
   margin-left: 0;
