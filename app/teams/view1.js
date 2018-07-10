@@ -111,7 +111,8 @@ angular.module('teamController', ['ngRoute'])
         };
 
         $scope.alertWinner = function() {
-            alert($scope.arrayOfGroup0.teamName);
+            console.log($scope.arrayOfGroup0[0].teams[0].teamName);
+            alert($scope.arrayOfGroup0[0].teams[0].teamName);
         };
 
         $scope.clearGroupArrays = function() {
