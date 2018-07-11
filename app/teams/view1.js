@@ -11,8 +11,7 @@ angular.module('teamController', ['ngRoute'])
 
 .controller('teamsCtrl', function($scope, $http) {
 
-    let interval;
-    let counter = 0;
+
 
     $scope.simulateGame = function() {
         $scope.playersFullNameGenerator();
@@ -22,32 +21,6 @@ angular.module('teamController', ['ngRoute'])
         $scope.generateAllGroups();
     };
 
-    let gamePlay = function() {
-        switch (counter) {
-            case 0:
-                interval = window.setTimeout($scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8), 1500);
-                counter++;
-                break;
-            case 1:
-                interval = window.setTimeout($scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4), 3000);
-                counter++;
-                break;
-            case 2:
-                interval = window.setTimeout($scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2), 4500);
-                counter++;
-                break;
-            case 3:
-                interval = window.setTimeout($scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1), 6000);
-                counter++;
-                break;
-            case 4:
-                interval = window.setTimeout($scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0), 7500);
-                counter++;
-                break;
-            default:
-                console.log("default, counter:  " + counter);
-        }
-    };
 
     $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
 
@@ -156,6 +129,36 @@ angular.module('teamController', ['ngRoute'])
             $scope.clearGroupArrays();
             // counter = 0;
         };
+
+        // let interval;
+        // let counter = 0;
+
+        // let gamePlay = function() {
+        //     switch (counter) {
+        //         case 0:
+        //             interval = window.setTimeout($scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8), 1500);
+        //             counter++;
+        //             break;
+        //         case 1:
+        //             interval = window.setTimeout($scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4), 3000);
+        //             counter++;
+        //             break;
+        //         case 2:
+        //             interval = window.setTimeout($scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2), 4500);
+        //             counter++;
+        //             break;
+        //         case 3:
+        //             interval = window.setTimeout($scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1), 6000);
+        //             counter++;
+        //             break;
+        //         case 4:
+        //             interval = window.setTimeout($scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0), 7500);
+        //             counter++;
+        //             break;
+        //         default:
+        //             console.log("default, counter:  " + counter);
+        //     }
+        // };
 
     });
 });
