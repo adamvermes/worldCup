@@ -25,7 +25,7 @@
         <div class="col-sm">
             <table>
                 <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [0,1,]">
+                <tr ng-repeat="groupIndex in [0,1]">
                     <td class="groupName">{{ arrayOfGroup4[groupIndex].name }}</td>
                     <td ng-repeat="team in arrayOfGroup4[groupIndex].teams">{{ team.teamName }}</td>
                 </tr>
@@ -51,17 +51,6 @@
                 </tr>
                 </tbody>
             </table>
-            <!--</br>-->
-            <!--<div class="col-sm">-->
-                <!--<table>-->
-                    <!--<tbody class="groupTable">-->
-                    <!--<tr ng-repeat="groupIndex in [0]">-->
-                        <!--<td class="groupName">Tournament Winner</td>-->
-                        <!--<td>{{arrayOfGroup0[0].teams[0].teamName}}</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-            <!--</div>-->
         </div>
         <div class="col-sm">
             <table>
@@ -111,4 +100,8 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="list-group">
+    <search-result person-object="person" formatted-address-function="formattedAddress(parameterPlaceholder)"></search-result>
 </div>
