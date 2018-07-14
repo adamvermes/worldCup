@@ -38,8 +38,7 @@ angular
                 "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
                 "Australia", "Iceland", "Portugal", "Chile"];
 
-            $scope.arrayOfGroups = [
-            ];
+            $scope.arrayOfGroups = [];
 
             $scope.arrayOfGroup8 = [];
             $scope.arrayOfGroup4 = [];
@@ -134,16 +133,16 @@ angular
             };
         });
 
-        $scope.person = {
-            name: "Adam",
-            address: "Vaci ut",
-            city: "Budapest",
-            zip: "1150"
-        };
+    })
 
-        $scope.formattedAddress = function(person) {
-            return person.address + ", " + person.city + ", " + person.zip;
-        };
+    .directive("groups", function () {
+        return {
+            restrict: 'AE',
+            templateUrl: 'directives/groups.html',
+            scope: {
+                arrayOfGroups: "="
+            }
+        }
     })
 
     .directive("group", function () {
@@ -151,7 +150,7 @@ angular
             restrict: 'AE',
             templateUrl: 'directives/group.html',
             scope: {
-                arrayOfGroups: "="
+                newGroup: "="
             }
         }
     })
@@ -175,18 +174,6 @@ angular
             }
         }
     });
-
-    // .directive("searchResult", function () {
-    //     return {
-    //         restrict: 'AE',
-    //         templateUrl: 'directives/searchresult.html',
-    //         replace: true,
-    //         scope: {
-    //             personObject: "=",
-    //             formattedAddressFunction: "&"
-    //         }
-    //     }
-    // })
 
 
 
