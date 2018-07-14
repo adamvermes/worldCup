@@ -3,32 +3,34 @@
 .menu {
   list-style: none;
   margin-bottom: 2em;
-  padding: 5px;]
+  padding: 10px;
 }
 
 body {
   background: darkblue url("./wallpaper/wc.jpg");
-  color: darkblue;
+  color: floralwhite;
   text-align: center;
 }
 
 .buttons {
   margin: auto;
   position: center;
-  padding: 5px;
-  color: darkblue;
-  border-color: lavenderblush;
-  box-shadow: 2px 2px darkblue;
+  padding: 10px;
+  border-color: floralwhite ;
+  background-color: darkred;
   font-weight: bold;
 }
 
 .teamName {
   font-weight: bold;
 }
+
 .groupName {
   font-weight: bold;
-
+  border: 1px solid floralwhite;
+  padding: 10px;
 }
+
 .players {
   font-weight: normal;
 }
@@ -52,15 +54,21 @@ tr:nth-child(even) {background-color: seashell;}
 }
 
 .header{
-  color: seashell;
-  padding: 5px;
+  color: floralwhite;
+  padding: 10px;
   background-color: darkred;
+  border-bottom: 1px solid floralwhite;
   text-shadow: 2px 2px 5px darkblue;
 }
 
 .matchup {
-  border: 1px solid white;
-  padding: 3px;
-  box-shadow: 2px 2px darkblue;
+  border: 1px solid darkblue;
+  padding: 5px;
   background-color: #b3d4fc;
+  font-weight: normal;
+  color: darkblue;
+}
+
+.allGroups {
+  background-color: darkred;
 }
