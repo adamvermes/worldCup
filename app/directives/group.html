@@ -1,0 +1,7 @@
+<div class="col-sm">
+    <div ng-repeat="aGroup in arrayOfGroups">
+        <div ng-repeat="group in aGroup">{{group.name}}
+            <matchup match="group.teams"></matchup>
+        </div>
+    </div>
+</div>

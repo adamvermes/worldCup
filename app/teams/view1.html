@@ -11,77 +11,8 @@
 <button class="buttons" ng-click="alertWinner()" ng-if="arrayOfGroup0[0].teams[0].teamName">Winner</button>
 
 <div class="container-fluid">
-    <div class="row justify-content-sm-center align-items-center allGroupsTable" ng-if="arrayOfGroup8[0]">
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                    <tr ng-repeat="groupIndex in [0,1,2,3]">
-                        <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
-                        <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [0,1]">
-                    <td class="groupName">{{ arrayOfGroup4[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup4[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [0]">
-                    <td class="groupName">{{ arrayOfGroup2[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup2[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [0]">
-                    <td class="groupName">{{ arrayOfGroup1[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup1[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [1]">
-                    <td class="groupName">{{ arrayOfGroup2[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup2[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [2,3]">
-                    <td class="groupName">{{ arrayOfGroup4[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup4[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-sm">
-            <table>
-                <tbody class="groupTable">
-                <tr ng-repeat="groupIndex in [4,5,6,7]">
-                    <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
-                    <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="row justify-content-sm-center align-items-center" ng-if="arrayOfGroup8[0]">
+        <group array-of-groups="arrayOfGroups"></group>
     </div>
 </div>
 
@@ -102,6 +33,6 @@
     </div>
 </div>
 
-<div class="list-group">
-    <search-result person-object="person" formatted-address-function="formattedAddress(parameterPlaceholder)"></search-result>
-</div>
+<!--<div class="list-group">-->
+    <!--<search-result person-object="person" formatted-address-function="formattedAddress(parameterPlaceholder)"></search-result>-->
+<!--</div>-->

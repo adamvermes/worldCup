@@ -38,7 +38,7 @@ angular
                 "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
                 "Australia", "Iceland", "Portugal", "Chile"];
 
-            $scope.arraysOfGroups = [
+            $scope.arrayOfGroups = [
             ];
 
             $scope.arrayOfGroup8 = [];
@@ -46,6 +46,8 @@ angular
             $scope.arrayOfGroup2 = [];
             $scope.arrayOfGroup1 = [];
             $scope.arrayOfGroup0 = [];
+
+            $scope.arrayOfGroups.push($scope.arrayOfGroup8, $scope.arrayOfGroup4, $scope.arrayOfGroup2, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
 
             $scope.generateGroupNames = function (numOfTeams, startingNum, previousArray, createdArray) {
                 for (let i = 0; i < numOfTeams; i+=2) {
@@ -124,7 +126,7 @@ angular
 
             $scope.startGame = function () {
                 $scope.simulateGame();
-                console.log($scope.arrayOfGroup8);
+                console.log($scope.arrayOfGroups);
             };
 
             $scope.resetGame = function () {
@@ -144,26 +146,47 @@ angular
         };
     })
 
-    .directive("searchResult", function () {
+    .directive("group", function () {
         return {
             restrict: 'AE',
-            templateUrl: 'directives/searchresult.html',
-            replace: true,
+            templateUrl: 'directives/group.html',
             scope: {
-                personObject: "=",
-                formattedAddressFunction: "&"
+                arrayOfGroups: "="
             }
         }
+    })
 
-    // .directive("group8", function () {
+    .directive("matchup", function () {
+        return {
+            restrict: 'AE',
+            templateUrl: 'directives/matchup.html',
+            scope: {
+                match: "="
+            }
+        }
+    })
+
+    .directive("team", function () {
+        return {
+            restrict: 'AE',
+            templateUrl: 'directives/team.html',
+            scope: {
+                team: "="
+            }
+        }
+    });
+
+    // .directive("searchResult", function () {
     //     return {
     //         restrict: 'AE',
-    //         templateUrl: 'directives/group8.html',
+    //         templateUrl: 'directives/searchresult.html',
+    //         replace: true,
     //         scope: {
-    //             arrayOfGroup8object: "=",
+    //             personObject: "=",
+    //             formattedAddressFunction: "&"
     //         }
     //     }
     // })
 
-    });
+
 

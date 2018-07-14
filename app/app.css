@@ -65,3 +65,10 @@ tr:nth-child(even) {background-color: seashell;}
   background-color: darkred;
   text-shadow: 2px 2px 5px darkblue;
 }
+
+.matchup {
+  border: 1px solid white;
+  padding: 3px;
+  box-shadow: 2px 2px darkblue;
+  background-color: #b3d4fc;
+}

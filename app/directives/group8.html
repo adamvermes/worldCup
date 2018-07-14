@@ -1,10 +1,5 @@
 <div class="col-sm">
-    <table>
-        <tbody class="groupTable">
-        <tr ng-repeat="groupIndex in [0,1,2,3]">
-            <td class="groupName">{{ arrayOfGroup8[groupIndex].name }}</td>
-            <td ng-repeat="team in arrayOfGroup8[groupIndex].teams">{{ team.teamName }}</td>
-        </tr>
-        </tbody>
-    </table>
+        <div class="col-sm" ng-repeat="group in arrayOfGroup8Object">{{group.teamName}}
+            <matchup match="group.teams"></matchup>
+        </div>
 </div>
