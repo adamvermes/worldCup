@@ -12,12 +12,19 @@ angular
 
     .controller('teamsCtrl', function($scope, $http) {
 
+        let gameIsOn = true;
+
         $scope.simulateGame = function() {
-            $scope.playersFullNameGenerator();
-            $scope.generateTeams(16);
-            $scope.shuffle($scope.teams);
-            $scope.fillPlayers();
-            $scope.generateAllGroups();
+            if (gameIsOn === true) {
+                $scope.playersFullNameGenerator();
+                $scope.generateTeams(16);
+                $scope.shuffle($scope.teams);
+                $scope.fillPlayers();
+                $scope.generateAllGroups();
+                gameIsOn = false;
+            } else {
+                return 0;
+            }
         };
 
         $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
@@ -121,6 +128,7 @@ angular
                 $scope.arrayOfGroup2.length = 0;
                 $scope.arrayOfGroup1.length = 0;
                 $scope.arrayOfGroup0.length = 0;
+                gameIsOn = true;
             };
 
             $scope.startGame = function () {
