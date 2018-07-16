@@ -46,7 +46,6 @@ angular
                 "Australia", "Iceland", "Portugal", "Chile"];
 
             $scope.arrayOfGroups = [];
-
             $scope.arrayOfGroup8 = [];
             $scope.arrayOfGroup4 = [];
             $scope.arrayOfGroup2 = [];
@@ -133,7 +132,6 @@ angular
 
             $scope.startGame = function () {
                 $scope.simulateGame();
-                console.log($scope.arrayOfGroups);
             };
 
             $scope.resetGame = function () {
@@ -141,6 +139,13 @@ angular
             };
         });
 
+    })
+
+    .directive("container", function () {
+        return {
+            restrict: 'AE',
+            templateUrl: 'directives/container.html',
+        }
     })
 
     .directive("groups", function () {
@@ -153,32 +158,12 @@ angular
         }
     })
 
-    .directive("group", function () {
-        return {
-            restrict: 'AE',
-            templateUrl: 'directives/group.html',
-            scope: {
-                newGroup: "="
-            }
-        }
-    })
-
     .directive("matchup", function () {
         return {
             restrict: 'AE',
             templateUrl: 'directives/matchup.html',
             scope: {
                 match: "="
-            }
-        }
-    })
-
-    .directive("team", function () {
-        return {
-            restrict: 'AE',
-            templateUrl: 'directives/team.html',
-            scope: {
-                team: "="
             }
         }
     });
