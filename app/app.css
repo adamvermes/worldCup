@@ -72,3 +72,11 @@ tr:nth-child(even) {background-color: seashell;}
 .allGroups {
   background-color: darkred;
 }
+
+.playersFade {
+  transition: all linear 1s;
+}
+
+.playersFade.ng-hide {
+  opacity: 0;
+}

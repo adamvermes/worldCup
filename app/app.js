@@ -4,6 +4,7 @@ angular
     .module('myApp', [
         'ngRoute',
         'teamController',
+        'ngAnimate'
     ])
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
 

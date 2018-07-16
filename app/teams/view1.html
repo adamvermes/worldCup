@@ -5,9 +5,9 @@
 
     <button class="buttons" ng-click="clearGroupArrays()">Reset</button>
 
-    <!--<button class="buttons">Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"></button>-->
-
     <button class="buttons" ng-click="alertWinner()" ng-if="arrayOfGroup0[0].teams[0].teamName">Winner</button>
+
+    <button class="buttons">Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"></button>
 </ul>
 
 <container></container>
@@ -24,7 +24,7 @@
 
                     <div class="col">Players <input type="checkbox" ng-model="togglePlayers"></div>
 
-                    <div class="players col-12" ng-show="togglePlayers" ng-repeat="player in team.teamPlayers">{{ player }}</div>
+                    <div class="players col-12 playersFade" ng-show="togglePlayers" ng-repeat="player in team.teamPlayers">{{ player }}</div>
                 </td>
             </tr>
             </tbody>
