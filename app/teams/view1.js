@@ -10,16 +10,18 @@ angular
         });
     }])
 
-    .controller('teamsCtrl', ['$scope', '$resource', 'playersDataService', function($scope, $resource, playersDataService) {
+    .controller('teamsCtrl', ['$scope', '$resource', 'playersDataService', '$interval', function($scope, $resource, playersDataService, $interval) {
 
         let gameIsOn = true;
+        let counter = 0;
+        var promise;
 
         $scope.simulateGame = function() {
             if (gameIsOn === true) {
                 $scope.generateTeams(16);
                 $scope.shuffle($scope.teams);
                 $scope.fillPlayers();
-                $scope.generateAllGroups();
+                promise = $interval(generateRounds, 1500);
                 gameIsOn = false;
             } else {
                 return 0;
@@ -69,13 +71,13 @@ angular
             $scope.generateGroupNames(numOfTeams, startingNum, advancedTeams, createdArray);
         };
 
-        $scope.generateAllGroups = function() {
-            $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
-            $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
-            $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
-            $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
-            $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
-        };
+        // $scope.generateAllGroups = function(groupToBeGenerated) {
+            // $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
+            // $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
+            // $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
+            // $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
+            // $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
+        // };
 
         $scope.generateTeams = function(teamNumbers) {
             if ($scope.teams.length === 16) {
@@ -126,7 +128,9 @@ angular
             $scope.arrayOfGroup2.length = 0;
             $scope.arrayOfGroup1.length = 0;
             $scope.arrayOfGroup0.length = 0;
+            counter = 0;
             gameIsOn = true;
+            $interval.cancel(promise);
         };
 
         $scope.startGame = function () {
@@ -135,6 +139,34 @@ angular
 
         $scope.resetGame = function () {
             $scope.clearGroupArrays();
+        };
+
+        let generateRounds = function () {
+            switch (counter) {
+                case 0:
+                    $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
+                    counter++;
+                    break;
+                case 1:
+                    $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
+                    counter++;
+                    break;
+                case 2:
+                    $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
+                    counter++;
+                    break;
+                case 3:
+                    $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
+                    counter++;
+                    break;
+                case 4:
+                    $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
+                    counter++;
+                    break;
+                default:
+                    console.log("default, counter:  " + counter);
+                    $interval.cancel(promise);
+            }
         };
     }])
 
