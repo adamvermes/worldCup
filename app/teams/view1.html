@@ -12,21 +12,22 @@
 
 <container></container>
 
+</br>
 <div class="container-fluid" ng-show="toggleTeams">
     <div class="row">
         <table class="col-md-2 offset-md-5">
             <tbody class="teamName">
-            <tr ng-repeat="team in teams | orderBy: 'teamName'">
-                <td class="row">
-                    <div class="col">{{team.teamName}} </div>
+                <tr ng-repeat="team in teams | orderBy: 'teamName'">
+                    <td class="row">
+                        <div class="col">{{team.teamName}} </div>
 
-                    <div>|</div>
+                        <div>|</div>
 
-                    <div class="col">Players <input type="checkbox" ng-model="togglePlayers"></div>
+                        <div class="col">Players <input type="checkbox" ng-model="togglePlayers"></div>
 
-                    <div class="players col-12 playersFade" ng-show="togglePlayers" ng-repeat="player in team.teamPlayers">{{ player }}</div>
-                </td>
-            </tr>
+                        <div class="players col-12 playersFade" ng-show="togglePlayers" ng-repeat="player in team.teamPlayers">{{ player }}</div>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

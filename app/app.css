@@ -43,6 +43,7 @@ table, th, td{
   border: 1px solid black;
   padding: 3px;
   box-shadow: 2px 2px darkblue;
+  color: darkblue;
 }
 
 tr:nth-child(odd) {background-color: skyblue;}
