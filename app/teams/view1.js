@@ -10,13 +10,12 @@ angular
         });
     }])
 
-    .controller('teamsCtrl', function($scope, $http) {
+    .controller('teamsCtrl', ['$scope', '$resource', 'playersDataService', function($scope, $resource, playersDataService) {
 
         let gameIsOn = true;
 
         $scope.simulateGame = function() {
             if (gameIsOn === true) {
-                $scope.playersFullNameGenerator();
                 $scope.generateTeams(16);
                 $scope.shuffle($scope.teams);
                 $scope.fillPlayers();
@@ -27,119 +26,117 @@ angular
             }
         };
 
-        $http.get('https://randomuser.me/api?results=176').success(function(playerData) {
+        playersDataService.playerData().get((function (playerData) {
+            $scope.playersFullNameGenerator(playerData.results);
+        }));
 
-            $scope.teamPlayers = playerData.results;
+        $scope.playersNames = [];
 
-            $scope.playersNames = [];
+        $scope.playersFullNameGenerator = function(playerData) {
+            for (let i = 0; i < playerData.length; i++) {
+                $scope.playersNames.push(playerData[i].name.first + " " + playerData[i].name.last);
+            }
+        };
 
-            $scope.playersFullNameGenerator = function() {
-                for (let i = 0; i < $scope.teamPlayers.length; i++) {
-                    $scope.playersNames.push($scope.teamPlayers[i].name.first + " " + $scope.teamPlayers[i].name.last);
+        $scope.teams = [];
+
+        $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
+            "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
+            "Australia", "Iceland", "Portugal", "Chile"];
+
+        $scope.arrayOfGroups = [];
+        $scope.arrayOfGroup8 = [];
+        $scope.arrayOfGroup4 = [];
+        $scope.arrayOfGroup2 = [];
+        $scope.arrayOfGroup1 = [];
+        $scope.arrayOfGroup0 = [];
+
+        $scope.arrayOfGroups.push($scope.arrayOfGroup8, $scope.arrayOfGroup4, $scope.arrayOfGroup2, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
+
+        $scope.generateGroupNames = function (numOfTeams, startingNum, previousArray, createdArray) {
+            for (let i = 0; i < numOfTeams; i+=2) {
+                createdArray.push({name: "Group " + ((i/2)+startingNum).toString(), teams: [previousArray[i], previousArray[i+1]]});
+            }
+        };
+
+        $scope.generateAdvancedTeams = function (numOfTeams, startingNum, previousArray, createdArray) {
+            let advancedTeams = [];
+
+            for (let i = 0; i < previousArray.length; i++) {
+                advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
+            }
+
+            $scope.generateGroupNames(numOfTeams, startingNum, advancedTeams, createdArray);
+        };
+
+        $scope.generateAllGroups = function() {
+            $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
+            $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
+            $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
+            $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
+            $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
+        };
+
+        $scope.generateTeams = function(teamNumbers) {
+            if ($scope.teams.length === 16) {
+               return 0;
+            } else {
+                for (let i = 0; i < teamNumbers; i++) {
+                    let team = {teamName: $scope.teamNames[i+1],
+                        teamPlayers: []
+                    };
+                    $scope.teams.push(team);
                 }
-            };
+            }
+        };
 
-            $scope.teams = [];
-
-            $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
-                "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
-                "Australia", "Iceland", "Portugal", "Chile"];
-
-            $scope.arrayOfGroups = [];
-            $scope.arrayOfGroup8 = [];
-            $scope.arrayOfGroup4 = [];
-            $scope.arrayOfGroup2 = [];
-            $scope.arrayOfGroup1 = [];
-            $scope.arrayOfGroup0 = [];
-
-            $scope.arrayOfGroups.push($scope.arrayOfGroup8, $scope.arrayOfGroup4, $scope.arrayOfGroup2, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
-
-            $scope.generateGroupNames = function (numOfTeams, startingNum, previousArray, createdArray) {
-                for (let i = 0; i < numOfTeams; i+=2) {
-                    createdArray.push({name: "Group " + ((i/2)+startingNum).toString(), teams: [previousArray[i], previousArray[i+1]]});
-                }
-            };
-
-            $scope.generateAdvancedTeams = function (numOfTeams, startingNum, previousArray, createdArray) {
-                let advancedTeams = [];
-
-                for (let i = 0; i < previousArray.length; i++) {
-                    advancedTeams.push(previousArray[i].teams[Math.floor(Math.random() + 0.5)]);
-                }
-
-                $scope.generateGroupNames(numOfTeams, startingNum, advancedTeams, createdArray);
-            };
-
-            $scope.generateAllGroups = function() {
-                $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
-                $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
-                $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
-                $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
-                $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
-            };
-
-            $scope.generateTeams = function(teamNumbers) {
-                if ($scope.teams.length === 16) {
-                   return 0;
+        $scope.fillPlayers = function() {
+            for (let i = 0; i < 10 ; i++) {
+                if ($scope.teams[i].teamPlayers.length < 1) {
+                    let slicedArray = [];
+                    for (let teamMember = 0, teamIndex = 0; teamMember < $scope.playersNames.length; teamMember+=11, teamIndex++) {
+                        slicedArray = $scope.playersNames.slice(teamMember, teamMember+11);
+                        $scope.teams[teamIndex].teamPlayers = slicedArray;
+                    }
                 } else {
-                    for (let i = 0; i < teamNumbers; i++) {
-                        let team = {teamName: $scope.teamNames[i+1],
-                            teamPlayers: []
-                        };
-                        $scope.teams.push(team);
-                    }
+                    return;
                 }
-            };
+            }
+        };
 
-            $scope.fillPlayers = function() {
-                for (let i = 0; i < 10 ; i++) {
-                    if ($scope.teams[i].teamPlayers.length < 1) {
-                        let slicedArray = [];
-                        for (let teamMember = 0, teamIndex = 0; teamMember < $scope.playersNames.length; teamMember+=11, teamIndex++) {
-                            slicedArray = $scope.playersNames.slice(teamMember, teamMember+11);
-                            $scope.teams[teamIndex].teamPlayers = slicedArray;
-                        }
-                    } else {
-                        return;
-                    }
-                }
-            };
+        $scope.shuffle = function(array) {
+            let i = 0;
+            let j = 0;
+            let temp = null;
+            for (i = array.length - 1; i > 0; i -= 1) {
+                j = Math.floor(Math.random() * (i + 1));
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp
+            }
+        };
 
-            $scope.shuffle = function(array) {
-                let i = 0;
-                let j = 0;
-                let temp = null;
-                for (i = array.length - 1; i > 0; i -= 1) {
-                    j = Math.floor(Math.random() * (i + 1));
-                    temp = array[i];
-                    array[i] = array[j];
-                    array[j] = temp
-                }
-            };
+        $scope.alertWinner = function() {
+            alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
+        };
 
-            $scope.alertWinner = function() {
-                alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
-            };
+        $scope.clearGroupArrays = function() {
+            $scope.arrayOfGroup8.length = 0;
+            $scope.arrayOfGroup4.length = 0;
+            $scope.arrayOfGroup2.length = 0;
+            $scope.arrayOfGroup1.length = 0;
+            $scope.arrayOfGroup0.length = 0;
+            gameIsOn = true;
+        };
 
-            $scope.clearGroupArrays = function() {
-                $scope.arrayOfGroup8.length = 0;
-                $scope.arrayOfGroup4.length = 0;
-                $scope.arrayOfGroup2.length = 0;
-                $scope.arrayOfGroup1.length = 0;
-                $scope.arrayOfGroup0.length = 0;
-                gameIsOn = true;
-            };
+        $scope.startGame = function () {
+            $scope.simulateGame();
+        };
 
-            $scope.startGame = function () {
-                $scope.simulateGame();
-            };
-
-            $scope.resetGame = function () {
-                $scope.clearGroupArrays();
-            };
-        });
-
-    })
+        $scope.resetGame = function () {
+            $scope.clearGroupArrays();
+        };
+    }])
 
     .directive("container", function () {
         return {

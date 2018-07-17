@@ -41,7 +41,7 @@ body {
 
 table, th, td{
   border: 1px solid black;
-  padding: 3px;
+  padding: 2px;
   box-shadow: 2px 2px darkblue;
   color: darkblue;
 }
@@ -75,7 +75,7 @@ tr:nth-child(even) {background-color: seashell;}
 }
 
 .playersFade {
-  transition: all linear 1s;
+  transition: all linear 0.5s;
 }
 
 .playersFade.ng-hide {
