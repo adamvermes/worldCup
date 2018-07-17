@@ -14,7 +14,7 @@ angular
 
         let gameIsOn = true;
         let counter = 0;
-        var promise;
+        let promise;
 
         $scope.simulateGame = function() {
             if (gameIsOn === true) {
@@ -41,11 +41,9 @@ angular
         };
 
         $scope.teams = [];
-
         $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
             "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
             "Australia", "Iceland", "Portugal", "Chile"];
-
         $scope.arrayOfGroups = [];
         $scope.arrayOfGroup8 = [];
         $scope.arrayOfGroup4 = [];
@@ -122,7 +120,7 @@ angular
             alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
         };
 
-        $scope.clearGroupArrays = function() {
+        $scope.clearGame = function() {
             $scope.arrayOfGroup8.length = 0;
             $scope.arrayOfGroup4.length = 0;
             $scope.arrayOfGroup2.length = 0;
@@ -138,7 +136,7 @@ angular
         };
 
         $scope.resetGame = function () {
-            $scope.clearGroupArrays();
+            $scope.clearGame();
         };
 
         let generateRounds = function () {
