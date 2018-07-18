@@ -1,16 +1,15 @@
 'use strict';
 
-angular
-    .module('teamController', ['ngRoute'])
+let teamController = angular.module('teamController', ['ngRoute'])
 
-    .config(['$routeProvider', function($routeProvider) {
+    teamController.config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/worldCup', {
             templateUrl: 'teams/view1.html',
             controller: 'teamsCtrl'
         });
     }])
 
-    .controller('teamsCtrl', ['$scope', 'playersDataService', '$interval', function($scope, playersDataService, $interval) {
+    teamController.controller('teamsCtrl', ['$scope', 'playersDataService', '$interval', function($scope, playersDataService, $interval) {
 
         let gameIsOn;
         let counter = 0;
@@ -163,34 +162,6 @@ angular
                     $interval.cancel(promise);
             }
         };
-    }])
-
-    .directive("container", function () {
-        return {
-            restrict: 'AE',
-            templateUrl: 'directives/container.html',
-        }
-    })
-
-    .directive("groups", function () {
-        return {
-            restrict: 'AE',
-            templateUrl: 'directives/groups.html',
-            scope: {
-                arrayOfGroups: "="
-            }
-        }
-    })
-
-    .directive("matchup", function () {
-        return {
-            restrict: 'AE',
-            templateUrl: 'directives/matchup.html',
-            scope: {
-                match: "="
-            }
-        }
-    });
-
+    }]);
 
 
