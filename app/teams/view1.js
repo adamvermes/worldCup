@@ -12,11 +12,12 @@ angular
 
     .controller('teamsCtrl', ['$scope', 'playersDataService', '$interval', function($scope, playersDataService, $interval) {
 
-        let gameIsOn = true;
+        let gameIsOn;
         let counter = 0;
         let promise;
 
         $scope.simulateGame = function() {
+            gameIsOn = true;
             if (gameIsOn === true) {
                 $scope.generateTeams(16);
                 $scope.shuffle($scope.teams);
@@ -125,6 +126,11 @@ angular
 
         $scope.startGame = function () {
             $scope.simulateGame();
+            gameIsOn = false;
+        };
+
+        $scope.stopGame = function() {
+            $interval.cancel(promise);
         };
 
         $scope.resetGame = function () {
