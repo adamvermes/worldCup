@@ -7,13 +7,25 @@ let teamController = angular.module('teamController', ['ngRoute'])
             templateUrl: 'teams/view1.html',
             controller: 'teamsCtrl'
         });
-    }])
+    }]);
 
     teamController.controller('teamsCtrl', ['$scope', 'playersDataService', '$interval', function($scope, playersDataService, $interval) {
 
         let gameIsOn;
         let counter = 0;
         let promise;
+
+        $scope.teams = [];
+        $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
+            "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
+            "Australia", "Iceland", "Portugal", "Chile"];
+        $scope.playersNames = [];
+        $scope.arrayOfGroups = [];
+        $scope.arrayOfGroup8 = [];
+        $scope.arrayOfGroup4 = [];
+        $scope.arrayOfGroup2 = [];
+        $scope.arrayOfGroup1 = [];
+        $scope.arrayOfGroup0 = [];
 
         $scope.simulateGame = function() {
             gameIsOn = true;
@@ -32,24 +44,11 @@ let teamController = angular.module('teamController', ['ngRoute'])
             $scope.playersFullNameGenerator(playerData.results);
         }));
 
-        $scope.playersNames = [];
-
         $scope.playersFullNameGenerator = function(playerData) {
             for (let i = 0; i < playerData.length; i++) {
                 $scope.playersNames.push(playerData[i].name.first + " " + playerData[i].name.last);
             }
         };
-
-        $scope.teams = [];
-        $scope.teamNames = ["France", "Argentina", "Brazil", "Croatia", "Spain", "England",
-            "Belgium", "Hungary", "Japan", "Columbia", "Mexico", "Germany", "Serbia",
-            "Australia", "Iceland", "Portugal", "Chile"];
-        $scope.arrayOfGroups = [];
-        $scope.arrayOfGroup8 = [];
-        $scope.arrayOfGroup4 = [];
-        $scope.arrayOfGroup2 = [];
-        $scope.arrayOfGroup1 = [];
-        $scope.arrayOfGroup0 = [];
 
         $scope.arrayOfGroups.push($scope.arrayOfGroup8, $scope.arrayOfGroup4, $scope.arrayOfGroup2, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
 
@@ -96,20 +95,17 @@ let teamController = angular.module('teamController', ['ngRoute'])
             }
         };
 
-        $scope.shuffle = function(array) {
-            let i = 0;
-            let j = 0;
-            let temp = null;
-            for (i = array.length - 1; i > 0; i -= 1) {
-                j = Math.floor(Math.random() * (i + 1));
-                temp = array[i];
-                array[i] = array[j];
-                array[j] = temp
-            }
+        $scope.startGame = function () {
+            $scope.simulateGame();
+            gameIsOn = false;
         };
 
-        $scope.alertWinner = function() {
-            alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
+        $scope.stopGame = function() {
+            $interval.cancel(promise);
+        };
+
+        $scope.resetGame = function () {
+            $scope.clearGame();
         };
 
         $scope.clearGame = function() {
@@ -123,17 +119,20 @@ let teamController = angular.module('teamController', ['ngRoute'])
             $interval.cancel(promise);
         };
 
-        $scope.startGame = function () {
-            $scope.simulateGame();
-            gameIsOn = false;
+        $scope.alertWinner = function() {
+            alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
         };
 
-        $scope.stopGame = function() {
-            $interval.cancel(promise);
-        };
-
-        $scope.resetGame = function () {
-            $scope.clearGame();
+        $scope.shuffle = function(array) {
+            let i = 0;
+            let j = 0;
+            let temp = null;
+            for (i = array.length - 1; i > 0; i -= 1) {
+                j = Math.floor(Math.random() * (i + 1));
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp
+            }
         };
 
         let generateRounds = function () {
