@@ -39,21 +39,6 @@ body {
   border-style: solid;
 }
 
-/*table, th, td{*/
-  /*border: 1px solid seashell;*/
-  /*padding: 2px;*/
-  /*box-shadow: 2px 2px darkblue;*/
-  /*background: darkred;*/
-/*}*/
-
-/*tr:nth-child(odd) {background-color: skyblue;}*/
-/*tr:nth-child(even) {background-color: seashell;}*/
-
-/*.row {*/
-  /*margin-left: 0;*/
-  /*margin-right: 0;*/
-/*}*/
-
 .header{
   color: floralwhite;
   padding: 10px;
@@ -68,6 +53,18 @@ body {
   background-color: #b3d4fc;
   font-weight: normal;
   color: darkblue;
+}
+
+.teams {
+  border: 1px solid darkblue;
+  padding: 5px;
+  background-color: #b3d4fc;
+  font-weight: normal;
+  color: darkblue;
+}
+
+.playersNames{
+  color: floralwhite;
 }
 
 .allGroups {
@@ -89,3 +86,4 @@ body {
   font-weight: normal;
   color: darkblue;
 }
+
