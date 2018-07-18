@@ -9,8 +9,8 @@ let teamController = angular.module('teamController', ['ngRoute'])
         });
     }]);
 
-    teamController.controller('teamsCtrl', ['$scope', 'playersDataService', '$interval', function($scope, playersDataService, $interval) {
-
+    teamController.controller('teamsCtrl', ['$scope', 'playersDataService',
+                                            '$interval', function($scope, playersDataService, $interval) {
         let gameIsOn;
         let counter = 0;
         let promise;

@@ -9,29 +9,13 @@
 
     <button class="buttons" ng-click="alertWinner()" ng-if="arrayOfGroup0[0].teams[0].teamName">Winner</button>
 
-    <button class="buttons">Teams <input class="buttons" type="checkbox" ng-model="toggleTeams"></button>
+    <button class="buttons">Teams <input class="buttons" type="checkbox"></button>
 </ul>
 
 <container></container>
 
 <br/>
 
-<div class="container-fluid" ng-show="toggleTeams">
-    <div class="row">
-        <table class="col-md-2 offset-md-5">
-            <tbody class="teamName">
-                <tr ng-repeat="team in teams | orderBy: 'teamName'">
-                    <td class="row">
-                        <div class="col">{{team.teamName}} </div>
+<teams ng-if="teams[0]" all-teams="teams"></teams>
 
-                        <div>|</div>
 
-                        <div class="col">Players <input type="checkbox" ng-model="togglePlayers"></div>
-
-                        <div class="players col-12 playersFade" ng-show="togglePlayers" ng-repeat="player in team.teamPlayers">{{ player }}</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>

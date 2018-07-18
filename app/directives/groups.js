@@ -1,3 +1,5 @@
+'use strict';
+
 teamController.directive("groups", function () {
     return {
         restrict: 'AE',
