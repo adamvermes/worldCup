@@ -31,7 +31,7 @@ let teamController = angular.module('teamController', ['ngRoute'])
             gameIsOn = true;
             if (gameIsOn === true) {
                 $scope.generateTeams(16);
-                $scope.shuffle($scope.teams);
+                shuffle($scope.teams);
                 $scope.fillPlayers();
                 promise = $interval(generateRounds, 1500);
                 gameIsOn = false;
@@ -123,7 +123,7 @@ let teamController = angular.module('teamController', ['ngRoute'])
             alert("Tournament Winner: " +  $scope.arrayOfGroup0[0].teams[0].teamName);
         };
 
-        $scope.shuffle = function(array) {
+        let shuffle = function(array) {
             let i = 0;
             let j = 0;
             let temp = null;
