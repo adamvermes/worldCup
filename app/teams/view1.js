@@ -10,7 +10,7 @@ angular
         });
     }])
 
-    .controller('teamsCtrl', ['$scope', '$resource', 'playersDataService', '$interval', function($scope, $resource, playersDataService, $interval) {
+    .controller('teamsCtrl', ['$scope', 'playersDataService', '$interval', function($scope, playersDataService, $interval) {
 
         let gameIsOn = true;
         let counter = 0;
