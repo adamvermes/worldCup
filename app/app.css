@@ -40,10 +40,10 @@ body {
 }
 
 table, th, td{
-  border: 1px solid black;
+  border: 1px solid seashell;
   padding: 2px;
   box-shadow: 2px 2px darkblue;
-  color: darkblue;
+  background: darkred;
 }
 
 tr:nth-child(odd) {background-color: skyblue;}
