@@ -154,7 +154,6 @@ angular
                     counter++;
                     break;
                 default:
-                    console.log("default, counter:  " + counter);
                     $interval.cancel(promise);
             }
         };
@@ -183,16 +182,6 @@ angular
             templateUrl: 'directives/matchup.html',
             scope: {
                 match: "="
-            }
-        }
-    })
-
-    .directive("teams", function () {
-        return {
-            restrict: 'AE',
-            templateUrl: 'directives/teams.html',
-            scope: {
-                teams: "="
             }
         }
     });
