@@ -69,14 +69,6 @@ angular
             $scope.generateGroupNames(numOfTeams, startingNum, advancedTeams, createdArray);
         };
 
-        // $scope.generateAllGroups = function(groupToBeGenerated) {
-            // $scope.generateGroupNames(16, 1, $scope.teams, $scope.arrayOfGroup8);
-            // $scope.generateAdvancedTeams(8, 9, $scope.arrayOfGroup8, $scope.arrayOfGroup4);
-            // $scope.generateAdvancedTeams(4, 13, $scope.arrayOfGroup4, $scope.arrayOfGroup2);
-            // $scope.generateAdvancedTeams(2, 15, $scope.arrayOfGroup2, $scope.arrayOfGroup1);
-            // $scope.generateAdvancedTeams(2, 16, $scope.arrayOfGroup1, $scope.arrayOfGroup0);
-        // };
-
         $scope.generateTeams = function(teamNumbers) {
             if ($scope.teams.length === 16) {
                return 0;
